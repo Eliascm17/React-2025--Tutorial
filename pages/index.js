@@ -22,7 +22,7 @@ export default function Home() {
                 </p>
                 <button
                     onClick={(e) => {
-                        auth.signinWithSpotify(e);
+                        auth.signinWithGithub(e);
                     }}
                 >
                     Sign In
