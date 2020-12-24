@@ -1,5 +1,5 @@
 import React from 'react';
-import { theme as chakraTheme } from '@chakra-ui/react';
+import { theme as chakraTheme } from '@chakra-ui/React';
 
 const theme = {
     ...chakraTheme,

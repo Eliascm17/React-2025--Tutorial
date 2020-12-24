@@ -1,40 +1,39 @@
 import Head from 'next/head';
-import { Button, Text, Code, Heading } from '@chakra-ui/react';
+import { Button, Text, Code, Heading, Flex } from '@chakra-ui/react';
 
 import { useAuth } from '@/lib/auth';
+import { Logo } from '@/styles/logo';
 
 export default function Home() {
     const auth = useAuth();
     return (
-        <div className="container">
-            <Head>
-                <title>Fast Feedback</title>
-            </Head>
-
-            <main>
-                <Heading>Fast Feedback</Heading>
-                <Text>
-                    Current user:
-                    <Code>{auth.user ? auth.user.email : ' None'}</Code>
-                </Text>
-                {auth.user ? (
-                    <Button
-                        onClick={(e) => {
-                            auth.signout(e);
-                        }}
-                    >
-                        Sign Out
-                    </Button>
-                ) : (
-                    <Button
-                        onClick={(e) => {
-                            auth.signinWithGithub(e);
-                        }}
-                    >
-                        Sign In
-                    </Button>
-                )}
-            </main>
-        </div>
+        <Flex
+            as="main"
+            direction="column"
+            align="center"
+            justify="center"
+            h="100vh"
+        >
+            <Logo boxSize="64px" />
+            {auth.user ? (
+                <Button
+                    onClick={(e) => {
+                        auth.signout(e);
+                    }}
+                >
+                    Sign Out
+                </Button>
+            ) : (
+                <Button
+                    m={4}
+                    size="sm"
+                    onClick={(e) => {
+                        auth.signinWithGithub(e);
+                    }}
+                >
+                    Sign In
+                </Button>
+            )}
+        </Flex>
     );
 }
