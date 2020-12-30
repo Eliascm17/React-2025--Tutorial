@@ -46,10 +46,10 @@ function AddSiteModal({ children }) {
             isClosable: true
         });
         // This mutate function is so that when you click the
-        // create button it called that enpoint to grab the latest site
+        // create button it called that endpoint to grab the latest site
         // that you just created.
         mutate(
-            '/api/sites',
+            ['/api/sites', auth.user.token],
             async (data) => {
                 return { sites: [...data.sites, newSite] };
             },

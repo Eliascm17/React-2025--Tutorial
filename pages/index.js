@@ -14,14 +14,21 @@ export default function Home() {
             justify="center"
             h="100vh"
         >
+            <Head>
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                                if (document.cookie && document.cookie.includes('fast-feedback-auth')) {
+                                    window.location.href = "/dashboard"
+                                }
+                            `
+                    }}
+                />
+            </Head>
             <Logo boxSize="64px" />
             {auth.user ? (
-                <Button
-                    onClick={(e) => {
-                        auth.signout(e);
-                    }}
-                >
-                    Sign Out
+                <Button as="a" size="sm" fontWeight="medium" href="/dashboard">
+                    View Dashboard
                 </Button>
             ) : (
                 <Button
