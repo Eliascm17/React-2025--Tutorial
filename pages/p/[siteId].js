@@ -15,7 +15,7 @@ export async function getStaticProps(context) {
         props: {
             initialFeedback: feedback
         },
-        unstable_revalidate: 1
+        revalidate: 1
     };
 }
 
@@ -39,6 +39,7 @@ const SiteFeedback = ({ initialFeedback }) => {
 
     const onAddComment = (e) => {
         e.preventDefault();
+
         const newFeedback = {
             author: auth.user.name,
             authorId: auth.user.uid,
@@ -46,7 +47,7 @@ const SiteFeedback = ({ initialFeedback }) => {
             text: inputEl.current.value,
             createdAt: new Date().toISOString(),
             provider: auth.user.provider,
-            status: 'pending'
+            status: 'active'
         };
 
         setAllFeedback([newFeedback, ...allFeedback]);
