@@ -36,7 +36,7 @@ function AddSiteModal({ children }) {
             url
         };
 
-        createSite(newSite);
+        const { id } = createSite(newSite);
 
         toast({
             title: 'Success!',
@@ -45,14 +45,15 @@ function AddSiteModal({ children }) {
             duration: 5000,
             isClosable: true
         });
+
         // This mutate function is so that when you click the
         // create button it called that endpoint to grab the latest site
-        // that you just created.
+        // that you just created. Updating cache
         mutate(
             ['/api/sites', auth.user.token],
-            async (data) => {
-                return { sites: [...data.sites, newSite] };
-            },
+            async (data) => ({
+                sites: [...data.sites, { id, ...newSite }]
+            }),
             false
         );
         onClose();
