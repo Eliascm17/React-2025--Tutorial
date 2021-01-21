@@ -15,7 +15,7 @@ const Dashboard = () => {
         return (
             <DashboardShell>
                 <SiteTableHeader />
-                <SiteTableSkeleton />;
+                <SiteTableSkeleton />
             </DashboardShell>
         );
     }
